@@ -12,19 +12,19 @@ default: fast
 
 $(call timestamp_of,c11-translation):
 	@echo "Kompiling the static C semantics..."
-	$(KOMPILE) $(KOMPILE_DEFAULT_FLAGS) c11-translation.k -d ".build/$(PROFILE)/c11-translation-kompiled" --no-prelude -w all -v --debug -I $(PROFILE_DIR)/semantics
+	$(KOMPILE) $(KOMPILE_DEFAULT_FLAGS) c11-translation.k -d ".build/$(PROFILE)/c11-translation-kompiled" --no-prelude -w all -v -I $(PROFILE_DIR)/semantics
 
 $(call timestamp_of,cpp14-translation):
 	@echo "Kompiling the static C++ semantics..."
-	$(KOMPILE) $(KOMPILE_DEFAULT_FLAGS) $(CPP_KOMPILE_FLAGS) cpp14-translation.k -d ".build/$(PROFILE)/cpp14-translation-kompiled" --no-prelude -w all -v --debug -I $(PROFILE_DIR)/semantics
+	$(KOMPILE) $(KOMPILE_DEFAULT_FLAGS) $(CPP_KOMPILE_FLAGS) cpp14-translation.k -d ".build/$(PROFILE)/cpp14-translation-kompiled" --no-prelude -w all -v -I $(PROFILE_DIR)/semantics
 
 $(call timestamp_of,c11-cpp14-linking):
 	@echo "Kompiling the C and C++ linking semantics..."
-	$(KOMPILE) $(KOMPILE_DEFAULT_FLAGS) $(CPP_KOMPILE_FLAGS) c11-cpp14-linking.k -d ".build/$(PROFILE)/c11-cpp14-linking-kompiled" --no-prelude -w all -v --debug -I $(PROFILE_DIR)/semantics
+	$(KOMPILE) $(KOMPILE_DEFAULT_FLAGS) $(CPP_KOMPILE_FLAGS) c11-cpp14-linking.k -d ".build/$(PROFILE)/c11-cpp14-linking-kompiled" --no-prelude -w all -v -I $(PROFILE_DIR)/semantics
 
 $(call timestamp_of,c11-cpp14):
 	@echo "Kompiling the dynamic C and C++ semantics..."
-	$(KOMPILE) $(KOMPILE_DEFAULT_FLAGS) $(EXECUTION_KOMPILE_FLAGS) c11-cpp14.k -d ".build/$(PROFILE)/c11-cpp14-kompiled" --no-prelude -w all -v --transition "interpRule" --debug -I $(PROFILE_DIR)/semantics
+	$(KOMPILE) $(KOMPILE_DEFAULT_FLAGS) $(EXECUTION_KOMPILE_FLAGS) c11-cpp14.k -d ".build/$(PROFILE)/c11-cpp14-kompiled" --no-prelude -w all -v --transition "interpRule" -I $(PROFILE_DIR)/semantics
 
 $(call timestamp_of,c11-nd):
 	@echo "Kompiling the dynamic C and C++ semantics with expression sequencing non-determinism..."
