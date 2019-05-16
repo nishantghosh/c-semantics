@@ -144,7 +144,7 @@ module C-TYPING-EXPR
      context typeof(Cast((HOLE:KItem), _, _)) [result(Type)]
      rule typeof(Cast(T:Type, K:K, V:K) => Cast(DeclType(T, K), V))
      context typeof(Cast(HOLE:KItem,_))
-     rule typeof(Cast(T:Type, _) => elideDeclParams(T))
+     rule typeof(Cast(T:Type, _) => elideDeclParams(type(utype(T))))
      rule typeof(cast(T:UType, _) => elideDeclParams(type(T)))
 
      syntax Type ::= usualArithmeticConversion(Type, Type) [klabel(usualArithmeticConversionQ), function]
