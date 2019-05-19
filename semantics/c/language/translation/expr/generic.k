@@ -8,8 +8,14 @@ module C-EXPR-GENERIC
      imports C-TYPING-SYNTAX
 
      rule (.K => typeof(E)) ~> Generic(E:K, _)
+
      rule typeof(T:Type) ~> Generic(_, list(Assocs::List))
-          => evalGeneric(T, Assocs, .List, .K)
+          => evalGeneric(type(utype(T)), Assocs, .List, .K)
+          requires notBool isArrayOrFunctionType(T)
+     rule typeof(t(... st: _:SimpleArrayType) #as T::Type) ~> Generic(_, list(Assocs::List))
+          => evalGeneric(type(utype(arrayToPtrType(T))), Assocs, .List, .K)
+     rule typeof(t(... st: functionType(...)) #as T::Type) ~> Generic(_, list(Assocs::List))
+          => evalGeneric(type(pointerType(T)), Assocs, .List, .K)
 
      syntax KItem ::= evalGeneric(Type, List, List, K)
      rule (.K => DeclType(T', X))
