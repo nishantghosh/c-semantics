@@ -17,7 +17,8 @@ add_executable(clang-kast ${CLANG_KAST_FILES})
 add_executable(call-sites ${CALL_SITES_FILES})
 
 include(FindCurses)
-set(LIBS
+
+link_libraries (
   clangFrontend
   clangSerialization
   clangDriver
@@ -54,9 +55,6 @@ set(LIBS
   dl
   ${CURSES_LIBRARIES}
 )
-
-target_link_libraries(clang-kast ${LIBS})
-target_link_libraries(call-sites ${LIBS})
 
 install(TARGETS clang-kast
         RUNTIME DESTINATION bin)
